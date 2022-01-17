@@ -6,6 +6,7 @@
 {% block body %}
 <div class="content">
     <h1 style="text-align: center"> Ma to-do list </h1>
+    <!-- Création d'un tableau avec tr pour colonne, th et td pour les lignes -->
     <table align="center" class="alignementtable"> 
         <tr>
             <th>Tâche</th>
@@ -24,6 +25,7 @@
             </tr>
         {% endfor %} 
     </table>
+    <!-- Classe pour créer un input de formulaire et ajouter les tâches -->
     <div class="form">
         <form action="/" method="POST">
             <input type="text" name="content" id="content">
