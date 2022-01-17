@@ -1,7 +1,8 @@
+# import de Flask comme framework, de sqlalchemy comme ORM et datetime pour obtenir le jour de post de la tâche
 from flask import Flask, render_template,url_for,request,redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+# Création de l'app avec Flask et d'un fichier database avec sqlalchemy
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///test.db'
 db=SQLAlchemy(app)
