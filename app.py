@@ -6,7 +6,7 @@ from datetime import datetime
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///test.db'
 db=SQLAlchemy(app)
-
+# Création d'une classe dans la database pour insérer de nouvelles tâches
 class Todo(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     content=db.Column(db.String(200),nullable=False)
@@ -14,7 +14,7 @@ class Todo(db.Model):
 
     def __repr__(self):
         return '<Task %r>' % self.id
-
+# Route pour l'ajout d'une tâche
 @app.route('/',methods=['POST','GET'])
 def index():
     if request.method=='POST':
@@ -31,7 +31,7 @@ def index():
     else:
         tasks= Todo.query.order_by(Todo.date_created).all()
         return render_template('index.html',tasks=tasks)
-        
+# Route pour supprimer une tâche        
 @app.route('/delete/<int:id>')
 def delete(id):
     task_to_delete=Todo.query.get_or_404(id)
@@ -42,7 +42,7 @@ def delete(id):
         return redirect('/')
     except:
         return 'There was a problem deleting that task'
-
+# Route pour mettre à jour une tâche
 @app.route('/update/<int:id>',methods=['GET','POST'])
 def update(id):
     task=Todo.query.get_or_404(id)
